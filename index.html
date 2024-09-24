@@ -94,10 +94,36 @@
   src: url(date-font.otf);
 }
 
-@media screen and (max-width: 600px) {
-  body {
-    width: 100vh;
-  }
+@media screen and (max-width: 768px) {
+    .card {
+        width: 100%;
+        height: auto;
+    }
+    
+    #heart-container {
+        max-width: 300px;
+        max-height: 300px;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    [style*="font-size: 40px"] {
+        font-size: 24px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #heart-container {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    
+    [style*="font-size: 40px"] {
+        font-size: 20px !important;
+    }
+}
 }
     </style>
 </head>
