@@ -65,44 +65,47 @@
     <!-- Your Script to load JSON content and handle spin -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const collapseElement = document.getElementById('collapseOne');
-            const contentElement = document.getElementById('content');
-            const cardElement = document.getElementById('spinningCard');
+    const collapseElement = document.getElementById('collapseOne');
+    const contentElement = document.getElementById('content');
+    const cardElement = document.getElementById('spinningCard');
 
-            // Spin the panel when clicked
-            document.getElementById('headingOne').addEventListener('click', () => {
-                cardElement.classList.add('spin');
-                
-                // Remove spin after animation ends
-                setTimeout(() => {
-                    cardElement.classList.remove('spin');
-                }, 1000);  // Match this duration with the CSS transition time
+    // Spin the panel when clicked
+    document.getElementById('headingOne').addEventListener('click', () => {
+        cardElement.classList.add('spin');
+
+        // Remove spin after animation ends
+        setTimeout(() => {
+            cardElement.classList.remove('spin');
+        }, 1000);  // Match this duration with the CSS transition time
+    });
+
+    // Initialize Bootstrap's collapse
+    $('#collapseOne').collapse(); 
+
+    // Load JSON content when the panel is expanded
+    $('#collapseOne').on('shown.bs.collapse', () => {
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const today = new Date().toISOString().slice(0, 10);  // YYYY-MM-DD
+                const content = data.find(entry => entry.date === today);
+
+                if (content) {
+                    contentElement.innerHTML = `
+                        <p>${content.date}</p>
+                        <p>${content.text}</p>
+                        ${content.image ? `<img src="${content.image}" alt="${content.text}" style="max-width: 100%; height: auto;">` : ''}
+                    `;
+                } else {
+                    contentElement.innerHTML = '<h1>No Content for Today</h1><p>Please check back later.</p>';
+                }
+            })
+            .catch(error => {
+                contentElement.innerHTML = '<p>Error loading content.</p>';
+                console.error('Error fetching JSON data:', error);
             });
-
-            // Load JSON content when the panel is expanded
-            collapseElement.addEventListener('shown.bs.collapse', () => {
-                fetch('data.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        const today = new Date().toISOString().slice(0, 10);  // YYYY-MM-DD
-                        const content = data.find(entry => entry.date === today);
-
-                        if (content) {
-                            contentElement.innerHTML = `
-                                <p>${content.date}</p>
-                                <p>${content.text}</p>
-                                ${content.image ? `<img src="${content.image}" alt="${content.text}" style="max-width: 100%; height: auto;">` : ''}
-                            `;
-                        } else {
-                            contentElement.innerHTML = '<h1>No Content for Today</h1><p>Please check back later.</p>';
-                        }
-                    })
-                    .catch(error => {
-                        contentElement.innerHTML = '<p>Error loading content.</p>';
-                        console.error('Error fetching JSON data:', error);
-                    });
-            });
-        });
+    });
+});
     </script>
 </body>
 </html>
