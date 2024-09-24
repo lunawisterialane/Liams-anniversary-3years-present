@@ -12,8 +12,8 @@ fetch('data.json')
         if (content) {
             document.getElementById('content').innerHTML = `
                 <p>${content.date}</p>
-                <p>${content.content}</p>
-                <img src="${content.image}" alt="${content.title}" style="max-width: 100%; height: auto;">
+                <p>${content.text}</p>
+                <img src="${content.image}" alt="${content.text}" style="max-width: 100%; height: auto;">
             `;
         } else {
             document.getElementById('content').innerHTML = `
