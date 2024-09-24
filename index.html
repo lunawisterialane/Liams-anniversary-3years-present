@@ -3,14 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Display Panel</title>
+    <title>Spinning Square Panel</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for Square Panel and Spinning Animation -->
+    <style>
+        /* Style for the square panel */
+        .card {
+            width: 300px;  /* Set the square size */
+            height: 300px;
+            margin: 0 auto;
+            transition: transform 1s ease;
+        }
+
+        /* When active, the panel will spin */
+        .card.spin {
+            transform: rotate(360deg);
+        }
+
+        /* Control the header and button */
+        .card-header {
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* Adjust card-body to fit the square */
+        .card-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="accordion" id="jsonAccordion">
-            <div class="card">
+            <div class="card" id="spinningCard">
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -32,8 +61,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Your Script to load JSON content -->
-    <script src="app.js"></script>
+    
 </body>
 </html>
