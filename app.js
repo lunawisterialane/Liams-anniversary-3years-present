@@ -13,6 +13,7 @@ fetch('data.json')
             document.getElementById('content').innerHTML = `
                 <h1>${content.title}</h1>
                 <p>${content.description}</p>
+                <img src="${content.image}" alt="${content.title}" style="max-width: 100%; height: auto;">
             `;
         } else {
             document.getElementById('content').innerHTML = `
