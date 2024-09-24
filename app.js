@@ -1,3 +1,18 @@
+    document.addEventListener('DOMContentLoaded', () => {
+            const collapseElement = document.getElementById('collapseOne');
+            const contentElement = document.getElementById('content');
+            const cardElement = document.getElementById('spinningCard');
+
+            // Spin the panel when clicked
+            document.getElementById('headingOne').addEventListener('click', () => {
+                cardElement.classList.add('spin');
+                
+                // Remove spin after animation ends
+                setTimeout(() => {
+                    cardElement.classList.remove('spin');
+                }, 1000);  // Match this duration with the CSS transition time
+            });
+            
 // Fetch JSON and load content into the panel when the panel is expanded
 document.addEventListener('DOMContentLoaded', () => {
     const collapseElement = document.getElementById('collapseOne');
