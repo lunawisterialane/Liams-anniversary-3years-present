@@ -11,8 +11,8 @@ fetch('data.json')
         // Display the content if there's a match
         if (content) {
             document.getElementById('content').innerHTML = `
-                <h1>${content.title}</h1>
-                <p>${content.description}</p>
+                <p>${content.date}</p>
+                <p>${content.content}</p>
                 <img src="${content.image}" alt="${content.title}" style="max-width: 100%; height: auto;">
             `;
         } else {
