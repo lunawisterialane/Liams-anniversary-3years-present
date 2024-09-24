@@ -7,19 +7,48 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS for Square Panel and Spinning Animation -->
-    <style>
-        /* Style for the square panel */
-        .card {
-            width: 300px;  /* Set the square size */
-            height: 300px;
-            margin: 0 auto;
-            transition: transform 1s ease;
+
+<style>
+    .website-background {
+        background-image: url("heart-background.jpg");
+        background-size: cover; /* This ensures the image covers the entire background */
+        background-repeat: no-repeat; /* This prevents the image from repeating */
+        background-attachment: fixed; /* This keeps the background fixed while scrolling */
+        min-height: 100vh; /* This ensures the background covers the full viewport height */
+    }
+
+        /* Change the color of the link button */
+        .btn-link {
+            color: #ffffff;  /* Set your desired color here (e.g., orange) */
+            text-decoration: none; /* Optional: remove underline */
         }
 
-        /* When active, the panel will spin */
-        .card.spin {
-            transform: rotate(360deg);
+        .btn-link:hover {
+            color: #000000;  /* Change color on hover (e.g., darker shade) */
+            text-decoration: underline;  /* Optional: add underline on hover */
         }
+        /* Style for the square panel */
+        .card {
+    width: 100vh;  /* Set the square size */
+    height: 100vh;
+    margin: 0 auto;
+    animation-name: slidein;
+    animation-duration: 3s;
+    animation-fill-mode: forwards; /* Ensure it stays in the final position */
+    background-color: #dd5e7c;
+}
+
+/* Define the keyframes for the slidein animation */
+@keyframes slidein {
+    from {
+        transform: translateX(-100%); /* Start from outside the left edge */
+        opacity: 0; /* Start fully transparent */
+    }
+    to {
+        transform: translateX(0); /* End at its original position */
+        opacity: 1; /* End fully visible */
+    }
+}
 
         /* Control the header and button */
         .card-header {
@@ -29,21 +58,52 @@
 
         /* Adjust card-body to fit the square */
         .card-body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-align: center;
         }
+
+        #heart-container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#heart-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    mask: 
+        radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
+        radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
+        linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
+        linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
+    mask-size: 50% 50%;
+    mask-repeat: no-repeat;
+    -webkit-mask: 
+        radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
+        radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
+        linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
+        linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
+    -webkit-mask-size: 50% 50%;
+    -webkit-mask-repeat: no-repeat;
+}
+
+@font-face {
+  font-family: date-font;
+  src: url(date-font.otf);
+}
     </style>
 </head>
 <body>
+    <body class="website-background">
     <div class="container mt-5">
         <div class="accordion" id="jsonAccordion">
             <div class="card" id="spinningCard">
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Click to View Content
+                            Click to View or Hide
                         </button>
                     </h5>
                 </div>
@@ -62,50 +122,39 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Your Script to load JSON content and handle spin -->
+    <!-- Script to load JSON content and handle collapse -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    const collapseElement = document.getElementById('collapseOne');
-    const contentElement = document.getElementById('content');
-    const cardElement = document.getElementById('spinningCard');
+            const collapseElement = document.getElementById('collapseOne');
+            const contentElement = document.getElementById('content');
 
-    // Spin the panel when clicked
-    document.getElementById('headingOne').addEventListener('click', () => {
-        cardElement.classList.add('spin');
+            // Load JSON content when the panel is expanded
+            $('#collapseOne').on('shown.bs.collapse', () => {
+                fetch('data.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const today = new Date().toISOString().slice(0, 10);  // YYYY-MM-DD
+                        const content = data.find(entry => entry.date === today);
 
-        // Remove spin after animation ends
-        setTimeout(() => {
-            cardElement.classList.remove('spin');
-        }, 1000);  // Match this duration with the CSS transition time
-    });
-
-    // Initialize Bootstrap's collapse
-    $('#collapseOne').collapse(); 
-
-    // Load JSON content when the panel is expanded
-    $('#collapseOne').on('shown.bs.collapse', () => {
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                const today = new Date().toISOString().slice(0, 10);  // YYYY-MM-DD
-                const content = data.find(entry => entry.date === today);
-
-                if (content) {
-                    contentElement.innerHTML = `
-                        <p>${content.date}</p>
-                        <p>${content.text}</p>
-                        ${content.image ? `<img src="${content.image}" alt="${content.text}" style="max-width: 100%; height: auto;">` : ''}
-                    `;
-                } else {
-                    contentElement.innerHTML = '<h1>No Content for Today</h1><p>Please check back later.</p>';
-                }
-            })
-            .catch(error => {
-                contentElement.innerHTML = '<p>Error loading content.</p>';
-                console.error('Error fetching JSON data:', error);
+                        if (content) {
+                            contentElement.innerHTML = `
+                                <div style="font-family: 'date-font'; font-size: 40px;">${content.date}</div>
+                                <div>${content.text}</div>
+                                <div id="heart-container">
+                                <div id="heart-image" style="background-image: url('${content.image}');"></div>
+</div>
+                            `;
+                        } else {
+                            contentElement.innerHTML = '<h1>No Content for Today</h1><p>Please check back later.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        contentElement.innerHTML = '<p>Error loading content.</p>';
+                        console.error('Error fetching JSON data:', error);
+                    });
             });
-    });
-});
+        });
     </script>
+    </body>
 </body>
 </html>
