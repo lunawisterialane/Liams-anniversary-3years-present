@@ -29,12 +29,26 @@
         "date": "2024-09-29",
         "title": "22 days to go!",
         "image": "2024-09-29.jpg"
-    }
-    ,
+    },
     {
         "date": "2024-09-30",
         "title": "21 days to go!",
         "image": "2024-09-30.jpg"
+    },
+    {
+        "date": "2024-10-01",
+        "title": "20 days to go!",
+        "image": "2024-10-01.jpg"
+    },
+    {
+        "date": "2024-10-02",
+        "title": "19 days to go!",
+        "image": "2024-10-02.jpg"
+    },
+    {
+        "date": "2024-10-03",
+        "title": "18 days to go!",
+        "image": "2024-10-03.jpg"
     }
 ]
 ]
