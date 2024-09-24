@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date-based Content</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        #content { margin: 20px; }
-    </style>
+    <title>JSON Display Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div id="content">
-        <!-- Content will be injected here based on the date -->
+    <div class="container mt-5">
+        <div class="accordion" id="jsonAccordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Click to View Content
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#jsonAccordion">
+                    <div class="card-body" id="content">
+                        <!-- Content from JSON will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your Script to load JSON content -->
     <script src="app.js"></script>
 </body>
 </html>
