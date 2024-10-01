@@ -1,7 +1,7 @@
 [
     {
         "date": "2024-09-24",
-        "text": "27 days to go!",
+        "title": "27 days to go!",
         "image": "2024-09-24.jpeg"
     },
     {
@@ -48,5 +48,11 @@
         "date": "2024-10-03",
         "title": "18 days to go!",
         "image": "2024-10-03.jpg"
+    }
+    ,
+    {
+        "date": "2024-10-04",
+        "title": "17 days to go!",
+        "image": "2024-10-04.jpg"
     }
 ]

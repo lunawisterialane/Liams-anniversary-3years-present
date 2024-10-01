@@ -3,139 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinning Square Panel</title>
+    <title>Liam's Anniversary Gift</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS for Square Panel and Spinning Animation -->
+    <style>
+        #archive { margin-top: 50px; text-align: center;}
+        .archive-item { cursor: pointer; color: #dd5e7c; text-decoration: underline; }
 
-<style>
-    .website-background {
-        background-image: url("heart-background.jpg");
-        background-size: cover; /* This ensures the image covers the entire background */
-        background-repeat: no-repeat; /* This prevents the image from repeating */
-        background-attachment: fixed; /* This keeps the background fixed while scrolling */
-        min-height: 100vh; /* This ensures the background covers the full viewport height */
-    }
+        .website-background {
+            background-image: url("heart-background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
 
-        /* Change the color of the link button */
         .btn-link {
-            color: #ffffff;  /* Set your desired color here (e.g., orange) */
-            text-decoration: none; /* Optional: remove underline */
+            color: #ffffff;
+            text-decoration: none;
         }
 
         .btn-link:hover {
-            color: #000000;  /* Change color on hover (e.g., darker shade) */
-            text-decoration: underline;  /* Optional: add underline on hover */
+            color: #000000;
+            text-decoration: underline;
         }
-        /* Style for the square panel */
+
         .card {
-    width: 100vh;  /* Set the square size */
-    height: 100vh;
-    margin: 0 auto;
-    animation-name: slidein;
-    animation-duration: 3s;
-    animation-fill-mode: forwards; /* Ensure it stays in the final position */
-    background-color: #dd5e7c;
-}
+            width: 100vh;
+            height: 100vh;
+            margin: 0 auto;
+            animation-name: slidein;
+            animation-duration: 3s;
+            animation-fill-mode: forwards;
+            background-color: #dd5e7c;
+        }
 
-/* Define the keyframes for the slidein animation */
-@keyframes slidein {
-    from {
-        transform: translateX(-100%); /* Start from outside the left edge */
-        opacity: 0; /* Start fully transparent */
-    }
-    to {
-        transform: translateX(0); /* End at its original position */
-        opacity: 1; /* End fully visible */
-    }
-}
+        @keyframes slidein {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
 
-        /* Control the header and button */
         .card-header {
             cursor: pointer;
             text-align: center;
         }
 
-        /* Adjust card-body to fit the square */
         .card-body {
             text-align: center;
         }
 
-        .card-body div {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-}
-
         #heart-container {
-          width: 100%;
-          max-width: 500px;
-          height: auto;
-          aspect-ratio: 1 / 1;
-          position: relative;
-          margin: 0 auto;
-}
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            margin: 0 auto;
+        }
 
-#heart-image {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    mask: 
-        radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
-        radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
-        linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
-        linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
-    mask-size: 50% 50%;
-    mask-repeat: no-repeat;
-    -webkit-mask: 
-        radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
-        radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
-        linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
-        linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
-    -webkit-mask-size: 50% 50%;
-    -webkit-mask-repeat: no-repeat;
-}
+        #heart-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            mask: 
+                radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
+                radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
+                linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
+                linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
+            mask-size: 50% 50%;
+            mask-repeat: no-repeat;
+            -webkit-mask: 
+                radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
+                radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
+                linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
+                linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
+            -webkit-mask-size: 50% 50%;
+            -webkit-mask-repeat: no-repeat;
+        }
 
-@font-face {
-  font-family: date-font;
-  src: url(date-font.otf);
-}
+        @font-face {
+            font-family: date-font;
+            src: url(date-font.otf);
+        }
 
-@media screen and (max-width: 768px) {
-    .card {
-        width: 100%;
-        height: auto;
-    }
-    
-    #heart-container {
-        max-width: 300px;
-        max-height: 300px;
-    }
-    
-    .card-body {
-        padding: 1rem;
-    }
-    
-    [style*="font-size: 40px"] {
-        font-size: 24px !important;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    #heart-container {
-        max-width: 200px;
-        max-height: 200px;
-    }
-    
-    [style*="font-size: 40px"] {
-        font-size: 20px !important;
-    }
-}
-}
+        @media screen and (max-width: 768px) {
+            .card {
+                width: 100%;
+                height: auto;
+            }
+        }
     </style>
 </head>
-<body>
-    <body class="website-background">
+<body class="website-background">
     <div class="container mt-5">
         <div class="accordion" id="jsonAccordion">
             <div class="card" id="spinningCard">
@@ -154,6 +122,13 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="archive">
+        <h2>Archive</h2>
+        <ul id="archive-list">
+            <!-- Archive list will be populated here -->
+        </ul>
     </div>
 
     <!-- Bootstrap JS and dependencies -->
@@ -178,22 +153,52 @@
                         if (content) {
                             contentElement.innerHTML = `
                                 <div style="font-family: 'date-font'; font-size: 40px;">${content.date}</div>
-                                <div>${content.text}</div>
+                                <div>${content.title}</div>
                                 <div id="heart-container">
-                                <div id="heart-image" style="background-image: url('${content.image}');"></div>
-</div>
+                                    <div id="heart-image" style="background-image: url('${content.image}');"></div>
+                                </div>
                             `;
                         } else {
                             contentElement.innerHTML = '<h1>No Content for Today</h1><p>Please check back later.</p>';
                         }
+
+                        // Generate the archive list
+                        generateArchive(data);
                     })
                     .catch(error => {
-                        contentElement.innerHTML = '<p>Error loading content.</p>';
                         console.error('Error fetching JSON data:', error);
                     });
             });
+
+            // Function to generate the archive list
+            function generateArchive(data) {
+                const archiveList = document.getElementById('archive-list');
+                archiveList.innerHTML = '';  // Clear any previous content
+
+                // Sort posts by date
+                data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                // Loop through the data and create archive items
+                data.forEach(post => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('archive-item');
+                    listItem.textContent = `${post.date}: ${post.title}`;
+                    listItem.onclick = () => displayContent(post);
+                    archiveList.appendChild(listItem);
+                });
+            }
+
+            // Function to display content from archive
+            function displayContent(post) {
+                contentElement.innerHTML = `
+                    <div style="font-family: 'date-font'; font-size: 40px;">${post.date}</div>
+                    <div>${post.title}</div>
+                    <div id="heart-container">
+                        <div id="heart-image" style="background-image: url('${post.image}');"></div>
+                    </div>
+                `;
+            }
         });
     </script>
-    </body>
 </body>
 </html>
